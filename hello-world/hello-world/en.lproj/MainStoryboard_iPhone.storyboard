@@ -27,6 +27,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Path" id="yNb-DU-qCs"/>
+                    <connections>
+                        <outlet property="mapView" destination="oXO-9q-iCz" id="VZK-JI-ZpZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
