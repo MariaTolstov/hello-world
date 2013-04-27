@@ -19,6 +19,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.mapView.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -29,8 +30,16 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    MKCoordinateRegion region = [self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(userLocation.coordinate, (CLLocationDistance)800, (CLLocationDistance)800)];
-    [self.mapView setRegion:region animated:YES];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+    
+    // Add an annotation
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    point.coordinate = userLocation.coordinate;
+    point.title = @"Where am I?";
+    point.subtitle = @"I'm here!!!";
+    
+    [self.mapView addAnnotation:point];
 }
 
 @end

@@ -12,9 +12,9 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oXO-9q-iCz">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oXO-9q-iCz">
                                 <connections>
-                                    <outlet property="delegate" destination="2" id="YlF-ol-zEp"/>
+                                    <outlet property="delegate" destination="3" id="2SX-nF-71h"/>
                                 </connections>
                             </mapView>
                         </subviews>
