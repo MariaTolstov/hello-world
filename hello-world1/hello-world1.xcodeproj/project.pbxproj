@@ -24,6 +24,9 @@
 		CED38EA1172B20CD00AE4845 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED38E79172B20CD00AE4845 /* Foundation.framework */; };
 		CED38EA9172B20CD00AE4845 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CED38EA7172B20CD00AE4845 /* InfoPlist.strings */; };
 		CED38EAC172B20CD00AE4845 /* hello_world1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CED38EAB172B20CD00AE4845 /* hello_world1Tests.m */; };
+		CED38EB6172B210300AE4845 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED38EB5172B210300AE4845 /* MapKit.framework */; };
+		CED38EBA172BD4FE00AE4845 /* SimpleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED38EB9172BD4FE00AE4845 /* SimpleTableCell.xib */; };
+		CED38EBD172BD67500AE4845 /* SimpleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CED38EBC172BD67500AE4845 /* SimpleTableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,10 @@
 		CED38EA8172B20CD00AE4845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CED38EAA172B20CD00AE4845 /* hello_world1Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hello_world1Tests.h; sourceTree = "<group>"; };
 		CED38EAB172B20CD00AE4845 /* hello_world1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hello_world1Tests.m; sourceTree = "<group>"; };
+		CED38EB5172B210300AE4845 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CED38EB9172BD4FE00AE4845 /* SimpleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleTableCell.xib; sourceTree = "<group>"; };
+		CED38EBB172BD67500AE4845 /* SimpleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableCell.h; sourceTree = "<group>"; };
+		CED38EBC172BD67500AE4845 /* SimpleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED38EB6172B210300AE4845 /* MapKit.framework in Frameworks */,
 				CED38E78172B20CD00AE4845 /* UIKit.framework in Frameworks */,
 				CED38E7A172B20CD00AE4845 /* Foundation.framework in Frameworks */,
 				CED38E7C172B20CD00AE4845 /* CoreGraphics.framework in Frameworks */,
@@ -89,6 +97,7 @@
 		CED38E6B172B20CD00AE4845 = {
 			isa = PBXGroup;
 			children = (
+				CED38EB5172B210300AE4845 /* MapKit.framework */,
 				CED38E7D172B20CD00AE4845 /* hello-world1 */,
 				CED38EA4172B20CD00AE4845 /* hello-world1Tests */,
 				CED38E76172B20CD00AE4845 /* Frameworks */,
@@ -126,6 +135,9 @@
 				CED38E95172B20CD00AE4845 /* ViewController.h */,
 				CED38E96172B20CD00AE4845 /* ViewController.m */,
 				CED38E7E172B20CD00AE4845 /* Supporting Files */,
+				CED38EB9172BD4FE00AE4845 /* SimpleTableCell.xib */,
+				CED38EBB172BD67500AE4845 /* SimpleTableCell.h */,
+				CED38EBC172BD67500AE4845 /* SimpleTableCell.m */,
 			);
 			path = "hello-world1";
 			sourceTree = "<group>";
@@ -240,6 +252,7 @@
 				CED38E8E172B20CD00AE4845 /* Default-568h@2x.png in Resources */,
 				CED38E91172B20CD00AE4845 /* MainStoryboard_iPhone.storyboard in Resources */,
 				CED38E94172B20CD00AE4845 /* MainStoryboard_iPad.storyboard in Resources */,
+				CED38EBA172BD4FE00AE4845 /* SimpleTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +290,7 @@
 				CED38E84172B20CD00AE4845 /* main.m in Sources */,
 				CED38E88172B20CD00AE4845 /* AppDelegate.m in Sources */,
 				CED38E97172B20CD00AE4845 /* ViewController.m in Sources */,
+				CED38EBD172BD67500AE4845 /* SimpleTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +481,7 @@
 				CED38EB1172B20CD00AE4845 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CED38EB2172B20CD00AE4845 /* Build configuration list for PBXNativeTarget "hello-world1Tests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +490,7 @@
 				CED38EB4172B20CD00AE4845 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
