@@ -12,7 +12,6 @@
 #import "AFJSONRequestOperation.h"
 
 @interface ViewController : UIViewController <MKMapViewDelegate>
-
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 
 //- (void)centerMap;

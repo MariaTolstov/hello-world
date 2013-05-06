@@ -7,14 +7,32 @@
 //
 
 #import "ViewController.h"
+#import <foundation/foundation.h>
 
 @interface ViewController ()
 @end
-
 @implementation ViewController
 @synthesize mapView;
 
+<<<<<<< HEAD
 NSMutableArray *pathPoints;
+=======
+
+
+bool recordMode = FALSE;
+MKPointAnnotation *startPoint = nil;
++ (void)startInitialize {
+    if(!startPoint)
+        startPoint = [[MKPointAnnotation alloc] init];
+}
+NSMutableArray *locationArray = nil;
+id object;
++ (void)initialize {
+    if(!locationArray)
+        locationArray = [[NSMutableArray alloc] init];
+}
+
+>>>>>>> test
 
 - (void)viewDidLoad
 {
@@ -25,6 +43,7 @@ NSMutableArray *pathPoints;
     longPressGestureRecognizer.minimumPressDuration = 1.0; //user needs to press for 2 seconds
     [self.mapView addGestureRecognizer:longPressGestureRecognizer];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -40,6 +59,7 @@ NSMutableArray *pathPoints;
     // Add an annotation
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = userLocation.coordinate;
+<<<<<<< HEAD
     
     [self.mapView addAnnotation:point];
 }
@@ -191,5 +211,36 @@ NSMutableArray *pathPoints;
 //    
 //    [objMapView setRegion:region animated:YES];
 //}
+=======
+    point.title = @"Where am I?";
+    point.subtitle = @"I'm here!!!";
+    if (recordMode == TRUE)
+    {
+        [locationArray addObject:userLocation];
+    }
+    //[self.mapView addAnnotation:point];
+}
+
+
+
+- (IBAction)record:(id)sender {
+    if (recordMode == FALSE)
+    {
+    recordMode = TRUE;
+    startPoint.coordinate = mapView.userLocation.coordinate;
+    }
+    else if (recordMode == TRUE){
+        recordMode=FALSE;
+        MKPointAnnotation *endPoint = [[MKPointAnnotation alloc] init];
+        endPoint.coordinate = mapView.userLocation.coordinate;
+        [self.mapView addAnnotation: endPoint];
+         [self.mapView addAnnotation: startPoint];
+       //  for(id object in locationArray)
+        //      [self.mapView addOverlays:object];
+        
+           //  [self.mapView addAnnotation:object];
+        
+             }}
+>>>>>>> test
 
 @end
