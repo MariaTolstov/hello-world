@@ -13,18 +13,22 @@
 @end
 @implementation ViewController
 @synthesize mapView;
+NSMutableArray *pathPoints;
+int pathLength=0;
+bool recordMode = FALSE;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 NSMutableArray *pathPoints;
 =======
-
-
-bool recordMode = FALSE;
-MKPointAnnotation *startPoint = nil;
-+ (void)startInitialize {
-    if(!startPoint)
-        startPoint = [[MKPointAnnotation alloc] init];
+=======
+MKPointAnnotation *startPoint;
++ (void)initializeStart {
+    MKPointAnnotation *startPoint = [[MKPointAnnotation alloc] init];
 }
+>>>>>>> new!!
+
+
 NSMutableArray *locationArray = nil;
 id object;
 + (void)initialize {
@@ -51,6 +55,16 @@ id object;
     // Dispose of any resources that can be recreated.
 }
 
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+    MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+    polylineView.strokeColor = [UIColor lightGrayColor];
+    polylineView.lineWidth = 3.0;
+    
+    return polylineView;
+}
+
+
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
@@ -59,6 +73,7 @@ id object;
     // Add an annotation
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     point.coordinate = userLocation.coordinate;
+<<<<<<< HEAD
 <<<<<<< HEAD
     
     [self.mapView addAnnotation:point];
@@ -214,33 +229,165 @@ id object;
 =======
     point.title = @"Where am I?";
     point.subtitle = @"I'm here!!!";
+=======
+  
+   // point.title = @"Where am I?";
+    //point.subtitle = @"I'm here!!!";
+    
+>>>>>>> new!!
     if (recordMode == TRUE)
     {
-        [locationArray addObject:userLocation];
+        pathLength++;
+        [locationArray addObject:point];
     }
-    //[self.mapView addAnnotation:point];
+}
+
+
+- (IBAction)recButton:(id)sender {
+    if (recordMode == FALSE)
+    {
+        [self setTitle:(@"Recording")];
+        [sender setTitle:@"Stop" forState:UIControlStateNormal];
+        MKPointAnnotation *startPointCopy = [[MKPointAnnotation alloc] init];
+        startPointCopy.coordinate = mapView.userLocation.coordinate;
+        recordMode = TRUE;
+        startPoint = startPointCopy;
+    }
+    else if (recordMode == TRUE){
+        [sender setTitle:@"Record" forState:UIControlStateNormal];  
+        [self setTitle:(@"Path")];
+        recordMode=FALSE;
+        MKPointAnnotation *endPoint = [[MKPointAnnotation alloc] init];
+        [self.mapView addAnnotation: startPoint];
+        endPoint.coordinate = mapView.userLocation.coordinate;
+        [self.mapView addAnnotation: endPoint];
+        for(id object in locationArray){
+           [self.mapView addAnnotation:object];
+            
+            MKPolyline *pathPolyline = [MKPolyline polylineWithCoordinates:(__bridge CLLocationCoordinate2D *)(locationArray) count:pathLength];
+            [self.mapView addOverlay:pathPolyline];
+            
+        }
+}
 }
 
 
 
-- (IBAction)record:(id)sender {
-    if (recordMode == FALSE)
-    {
-    recordMode = TRUE;
-    startPoint.coordinate = mapView.userLocation.coordinate;
+    - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan)
+        return;
+    
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
+    CLLocationCoordinate2D touchMapCoordinate =
+    [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.coordinate = touchMapCoordinate;
+    [self.mapView addAnnotation:annotation];
+    
+    if(pathPoints == nil){
+        pathPoints = [[NSMutableArray alloc] initWithCapacity:2];
+        [pathPoints addObject:annotation];
+    } else {
+        if(pathPoints != nil && [pathPoints count] == 1){
+            MKPointAnnotation *prevPoint = [pathPoints objectAtIndex:0];
+            NSArray *arrRoutePoints = [self getRoutePointFrom: prevPoint to:annotation];
+            [self drawRoute:arrRoutePoints];
+        } else {
+            MKPointAnnotation *prevPoint = [pathPoints lastObject];
+            NSArray *arrRoutePoints = [self getRoutePointFrom: prevPoint to:annotation];
+            [self drawRoute:arrRoutePoints];
+        }
+        [pathPoints addObject:annotation];
     }
-    else if (recordMode == TRUE){
-        recordMode=FALSE;
-        MKPointAnnotation *endPoint = [[MKPointAnnotation alloc] init];
-        endPoint.coordinate = mapView.userLocation.coordinate;
-        [self.mapView addAnnotation: endPoint];
-         [self.mapView addAnnotation: startPoint];
-       //  for(id object in locationArray)
-        //      [self.mapView addOverlays:object];
+}
+
+- (void)drawRoute:(NSArray *)routePoints
+{
+    int numPoints = [routePoints count];
+    if (numPoints > 1)
+    {
+        CLLocationCoordinate2D* coords = malloc(numPoints * sizeof(CLLocationCoordinate2D));
+        for (int i = 0; i < numPoints; i++)
+        {
+            CLLocation* current = [routePoints objectAtIndex:i];
+            coords[i] = current.coordinate;
+        }
         
-           //  [self.mapView addAnnotation:object];
+        MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coords count:numPoints];
+        free(coords);
         
+        [self.mapView addOverlay:polyline];
+        
+<<<<<<< HEAD
              }}
 >>>>>>> test
+=======
+        //[objMapView setNeedsDisplay];
+    }
+}
+
+
+
+- (NSArray*)getRoutePointFrom:(MKPointAnnotation *)origin to:(MKPointAnnotation *)destination
+{
+    NSString* saddr = [NSString stringWithFormat:@"%f,%f", origin.coordinate.latitude, origin.coordinate.longitude];
+    NSString* daddr = [NSString stringWithFormat:@"%f,%f", destination.coordinate.latitude, destination.coordinate.longitude];
+    
+    NSString* apiUrlStr = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@", saddr, daddr];
+    NSURL* apiUrl = [NSURL URLWithString:apiUrlStr];
+    
+    NSError *error;
+    NSString *apiResponse = [NSString stringWithContentsOfURL:apiUrl encoding:NSUTF8StringEncoding error:&error];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"points:\\\"([^\\\"]*)\\\"" options:0 error:NULL];
+    NSTextCheckingResult *match = [regex firstMatchInString:apiResponse options:0 range:NSMakeRange(0, [apiResponse length])];
+    NSString *encodedPoints = [apiResponse substringWithRange:[match rangeAtIndex:1]];
+    
+    return [self decodePolyLine:[encodedPoints mutableCopy]];
+}
+
+- (NSMutableArray *)decodePolyLine:(NSMutableString *)encodedString
+{
+    [encodedString replaceOccurrencesOfString:@"\\\\" withString:@"\\"
+                                      options:NSLiteralSearch
+                                        range:NSMakeRange(0, [encodedString length])];
+    NSInteger len = [encodedString length];
+    NSInteger index = 0;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSInteger lat=0;
+    NSInteger lng=0;
+    while (index < len) {
+        NSInteger b;
+        NSInteger shift = 0;
+        NSInteger result = 0;
+        do {
+            b = [encodedString characterAtIndex:index++] - 63;
+            result |= (b & 0x1f) << shift;
+            shift += 5;
+        } while (b >= 0x20);
+        NSInteger dlat = ((result & 1) ? ~(result >> 1) : (result >> 1));
+        lat += dlat;
+        shift = 0;
+        result = 0;
+        do {
+            b = [encodedString characterAtIndex:index++] - 63;
+            result |= (b & 0x1f) << shift;
+            shift += 5;
+        } while (b >= 0x20);
+        NSInteger dlng = ((result & 1) ? ~(result >> 1) : (result >> 1));
+        lng += dlng;
+        NSNumber *latitude = [[NSNumber alloc] initWithFloat:lat * 1e-5];
+        NSNumber *longitude = [[NSNumber alloc] initWithFloat:lng * 1e-5];
+        printf("\n[%f,", [latitude doubleValue]);
+        printf("%f]", [longitude doubleValue]);
+        CLLocation *loc = [[CLLocation alloc] initWithLatitude:[latitude floatValue] longitude:[longitude floatValue]];
+        [array addObject:loc];
+    }
+    return array;
+}
+
+
+>>>>>>> new!!
 
 @end

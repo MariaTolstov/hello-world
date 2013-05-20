@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40181DDB174A393F00161E3C /* GetRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 40181DDA174A393F00161E3C /* GetRoute.m */; };
 		CED38D10172ABC6900AE4845 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED38D0F172ABC6900AE4845 /* UIKit.framework */; };
 		CED38D12172ABC6900AE4845 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED38D11172ABC6900AE4845 /* Foundation.framework */; };
 		CED38D14172ABC6900AE4845 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED38D13172ABC6900AE4845 /* CoreGraphics.framework */; };
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40181DD9174A393F00161E3C /* GetRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetRoute.h; sourceTree = "<group>"; };
+		40181DDA174A393F00161E3C /* GetRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetRoute.m; sourceTree = "<group>"; };
 		CED38D0C172ABC6900AE4845 /* hello-world.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hello-world.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED38D0F172ABC6900AE4845 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CED38D11172ABC6900AE4845 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,6 +166,8 @@
 				CED38D27172ABC6900AE4845 /* MainStoryboard_iPhone.storyboard */,
 				CED38D2A172ABC6900AE4845 /* MainStoryboard_iPad.storyboard */,
 				CED38D2D172ABC6900AE4845 /* ViewController.h */,
+				40181DD9174A393F00161E3C /* GetRoute.h */,
+				40181DDA174A393F00161E3C /* GetRoute.m */,
 				CED38D2E172ABC6900AE4845 /* ViewController.m */,
 				CED38ECB172CEA5400AE4845 /* AFNetworking */,
 				CED38D16172ABC6900AE4845 /* Supporting Files */,
@@ -345,6 +350,7 @@
 				CED38D1C172ABC6900AE4845 /* main.m in Sources */,
 				CED38D20172ABC6900AE4845 /* AppDelegate.m in Sources */,
 				CED38D2F172ABC6900AE4845 /* ViewController.m in Sources */,
+<<<<<<< HEAD
 				CED38ECA172C4F2D00AE4845 /* GetRoute.m in Sources */,
 				CED38EDF172CEA5400AE4845 /* AFHTTPClient.m in Sources */,
 				CED38EE0172CEA5400AE4845 /* AFHTTPRequestOperation.m in Sources */,
@@ -355,6 +361,9 @@
 				CED38EE5172CEA5400AE4845 /* AFURLConnectionOperation.m in Sources */,
 				CED38EE6172CEA5400AE4845 /* AFXMLRequestOperation.m in Sources */,
 				CED38EE7172CEA5400AE4845 /* UIImageView+AFNetworking.m in Sources */,
+=======
+				40181DDB174A393F00161E3C /* GetRoute.m in Sources */,
+>>>>>>> new!!
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
